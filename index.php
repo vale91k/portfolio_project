@@ -1,2 +1,2 @@
 <?php
-echo 'Hello World! x3';
+require_once("../new.tasks/header.php");
