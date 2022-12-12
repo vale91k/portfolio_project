@@ -1,3 +1,11 @@
+<?php
+
+use Tasks\TimeIconClass;
+
+require_once 'Tasks/TimeIconClass.php';
+$urlToPicture = new TimeIconClass();
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,6 +22,7 @@
     <div class="container">
         <div class="header__inner">
             <div class="header__logo">Ivan's Blog</div>
+            <img class="header__picture" src="<?= $urlToPicture->getTimeIcon(); ?>">
             <nav class="nav">
                 <a class="nav__link" href="#">About</a>
                 <a class="nav__link" href="#">Task1</a>
@@ -27,7 +36,7 @@
 <div class="main_page">
     <div class="container">
         <div class="main_page__inner">
-        <h1 class="main_page__title">Welcome to my page</h1>
+            <h1 class="main_page__title">Welcome to my page</h1>
         </div>
     </div>
 </div>
