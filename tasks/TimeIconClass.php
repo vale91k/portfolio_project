@@ -14,18 +14,16 @@ class TimeIconClass
      */
     public static function getTimeIcon()
     {
-
         $curTime = date("H");
-        if ($curTime > 0 and $curTime < 6) {
+        if ($curTime >= 0 && $curTime < 6) {
             $url = "../html/img/night.png";
-        } elseif ($curTime >= 6 and $curTime < 12) {
+        } elseif ($curTime >= 6 && $curTime < 12) {
             $url = "../html/img/morning.png";
-        } elseif ($curTime >= 12 and $curTime < 23) {
+        } elseif ($curTime >= 12 && $curTime < 23) {
             $url = "../html/img/dayly.png";
         } else {
             $url = "../html/img/night.png";
         }
-
         return $url;
     }
 }
