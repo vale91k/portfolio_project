@@ -64,6 +64,11 @@ h1,h2,h3,h4,h5,h6{
     font-weight: 700;
     color: #133CAC;
 }
+.header__picture{
+    width: 5%;
+
+    align-items: center;
+}
 /*nav */
 .nav{
     font-size: 14px;
@@ -71,7 +76,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .nav__link{
     display: inline-block;
-    vertical-align: top;
+
     margin: 0 15px;
     position: relative;
     color: #2B4281;

@@ -1,2 +1,2 @@
 <?php
-require_once("../new.tasks/header.php");
+require_once 'header.php';
