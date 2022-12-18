@@ -9,17 +9,21 @@ use Bitrix\Main\Page\Asset;
 
 
 use Tasks\TimeIconClass;
+
 require_once 'tasks/TimeIconClass.php';
 
 
 ?>
 <!doctype html>
-<html lang="<?= LANGUAGE_ID?>">
+<html lang="<?= LANGUAGE_ID; ?>">
 <head>
     <? $APPLICATION->ShowHead(); ?>
-    <link rel="stylesheet" href="<?= SITE_TEMPLATE_PATH ?>/styles/css/style.css">
+
+    <?
+    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/styles/css/style.css");
+    ?>
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;600&display=swap" rel="stylesheet">
-    <title><? $APPLICATION->ShowTitle() ?></title>
+    <title><? $APPLICATION->ShowTitle(); ?></title>
 
 </head>
 <body>
@@ -31,9 +35,9 @@ require_once 'tasks/TimeIconClass.php';
 
             <div class="header__inner">
                 <div class="header__logo">
-                    <a href="/index.php" class="index_link">  Ivan's Blog</a>
+                    <a href="/" class="index_link"> Ivan's Blog</a>
                 </div>
-                <img class="header__picture" src="<?= TimeIconClass::getTimeIcon() ?>">
+                <img class="header__picture" src="<?= TimeIconClass::getTimeIcon(); ?>">
                 <nav class="nav">
                     <a class="nav__link" href="#">About</a>
                     <a class="nav__link" href="#">Task1</a>

@@ -1,5 +1,5 @@
 
-body{
+body {
     background: url("../images/def_back.jpg") center no-repeat;
     height: 100%;
     font-size: 15px;
@@ -7,14 +7,17 @@ body{
     color: #333;
 
 }
+
 *:before,
-*:after{
+*:after {
     box-sizing: border-box;
 
 }
-h1,h2,h3,h4,h5,h6{
+
+h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
+
 .wrap {
     min-height: 100%;
     display: flex;
@@ -25,15 +28,17 @@ h1,h2,h3,h4,h5,h6{
     clear: both;
 
 }
-.container{
+
+.container {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     font-size: 18px;
 
 }
+
 /* Main page */
-.main_page{
+.main_page {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,7 +48,8 @@ h1,h2,h3,h4,h5,h6{
     background-size: cover;
 
 }
-.main_page__title{
+
+.main_page__title {
     font-size: 120px;
     font-weight: 700;
     text-transform: uppercase;
@@ -51,13 +57,15 @@ h1,h2,h3,h4,h5,h6{
     line-height: 1;
     cursor: default;
 }
-.main_page__inner{
+
+.main_page__inner {
     width: 100%;
     max-width: 880px;
     margin: 0 auto;
 }
+
 /* header */
-.header{
+.header {
     width: 100%;
     padding-top: 30px;
     position: absolute;
@@ -66,34 +74,39 @@ h1,h2,h3,h4,h5,h6{
     right: 0;
     z-index: 1000;
 }
-.header__inner{
+
+.header__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.header__logo{
+
+.header__logo {
     font-family: 'Yanone Kaffeesatz', sans-serif;
     font-size: 30px;
     font-weight: 700;
 
 }
-.index_link{
+
+.index_link {
     position: relative;
     color: #133CAC;
     text-decoration: none;
 
 }
-.header__picture{
-    width: 5%;
 
+.header__picture {
+    width: 5%;
     align-items: center;
 }
+
 /*nav */
-.nav{
+.nav {
     font-size: 14px;
     text-transform: uppercase;
 }
-.nav__link{
+
+.nav__link {
     display: inline-block;
 
     margin: 0 15px;
@@ -102,7 +115,8 @@ h1,h2,h3,h4,h5,h6{
     text-decoration: none;
     transition: color 0.1s linear;
 }
-.nav__link:after{
+
+.nav__link:after {
     content: "";
     display: block;
     width: 100%;
@@ -116,17 +130,20 @@ h1,h2,h3,h4,h5,h6{
 
     transition: opacity 0.1s linear;
 }
-.nav__link:hover{
+
+.nav__link:hover {
     color: #228653;
 }
-.nav__link:hover:after{
+
+.nav__link:hover:after {
     opacity: 1;
 }
+
 /*  footer   */
 footer {
     padding: 20px;
-    background: rgb(0,212,255);
-    background: linear-gradient(90deg, rgba(0,212,255,0.3981967787114846) 4%, rgba(107,101,193,0.7903536414565826) 74%, rgba(61,61,139,1) 97%);
+    background: rgb(0, 212, 255);
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.3981967787114846) 4%, rgba(107, 101, 193, 0.7903536414565826) 74%, rgba(61, 61, 139, 1) 97%);
     text-align: center;
     cursor: default;
 }
