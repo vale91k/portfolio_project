@@ -19,9 +19,7 @@ require_once 'tasks/TimeIconClass.php';
 <head>
     <? $APPLICATION->ShowHead(); ?>
 
-    <?
-    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/styles/css/style.css");
-    ?>
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH;?>/styles/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;600&display=swap" rel="stylesheet">
     <title><? $APPLICATION->ShowTitle(); ?></title>
 
