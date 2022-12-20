@@ -16,14 +16,15 @@ class TimeIconClass
     {
         $curTime = date("H");
         if ($curTime >= 0 && $curTime < 6) {
-            $url = "../html/img/night.png";
+            $url = SITE_TEMPLATE_PATH . "/styles/images/night.png";
         } elseif ($curTime >= 6 && $curTime < 12) {
-            $url = "../html/img/morning.png";
+            $url = SITE_TEMPLATE_PATH . "/styles/images/morning.png";
         } elseif ($curTime >= 12 && $curTime < 23) {
-            $url = "../html/img/dayly.png";
+            $url = SITE_TEMPLATE_PATH . "/styles/images/dayly.png";
         } else {
-            $url = "../html/img/night.png";
+            $url = SITE_TEMPLATE_PATH . "/styles/images/night.png";
         }
         return $url;
     }
 }
+
