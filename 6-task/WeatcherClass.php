@@ -9,6 +9,12 @@ class WeatcherClass
 {
     const API_KEY = '76eaa38077084ff9b6895618221212';
     const BASE_URL = 'http://api.weatherapi.com/v1';
+    private $currCity;
+
+    public function __construct($currCity)
+    {
+        return $currCity;
+    }
 
     /**
      * Реализовать метод, который будет отдавать массив с текущей погодой, в зависимости от того что нам будет API отдавать
