@@ -5,32 +5,39 @@ class Weather
 {
     const API_KEY = '76eaa38077084ff9b6895618221212&q=';
     const BASE_URL = 'http://api.weatherapi.com/v1/current.json?key=';
-    private $city;
+    private $cityName;
 
-    public function getCityName()
-    {                               /*  Наработка для геттера и сеттера */
-        return $this->city;
+
+    public function setCityName($cityName)
+    {
+        /*
+         * Наработка сеттера, если понадобится проверка наличия города из бд
+         * $result = $mysqli->query("SELECT * FROM Key WHERE Name LIKE '%".$Name."%'");
+         * if ($result->num_rows > 0) {
+         * do Something
+         * }
+         */
+        return $this->cityName;
     }
 
-    public function __construct($city = 'Magnitogorsk')
+    public function getCityName($cityName = 'Magnitogorsk'): string
     {
-        $this->city = $city;                /*  Наработка для геттера и сеттера */
+        return $this->cityName = $cityName;
     }
 
-    public static function cityName($city = 'Erevan')
+    public function getWeatherUrl(): string
     {
-        return $city;
+        return $url = self::BASE_URL . self::API_KEY . $this->getCityName();
     }
 
-    public static function weatherData()
+    public function getWeatherData()
     {
-        $url = self::BASE_URL . self::API_KEY . self::cityName();
-        return json_decode(file_get_contents($url), true);
+        return json_decode(file_get_contents($this->getWeatherUrl()), true);
     }
 
-    public static function getParsingWeatherData()
+    public function getParsingWeatherData(): array
     {
-        $weatherData = self::weatherData();
+        $weatherData = $this->getWeatherData();
         $res["location"] = $weatherData["location"]["name"];
         $res["temp_c"] = $weatherData["current"]["temp_c"];
         $res["humidity"] = $weatherData["current"]["humidity"];
@@ -43,15 +50,17 @@ class Weather
 
 }
 
-$resultOfWeather = Weather::getParsingWeatherData();
+$weatherResult = new Weather();
+$weatherResult = $weatherResult->getParsingWeatherData();
+
 echo '<pre>';
-print_r($resultOfWeather);
+print_r($weatherResult);
 echo '</pre>';
 ?>
 <div class="weather">
-    <h2>Погода в городе <?= $resultOfWeather["location"]; ?></h2>
-    <p>Погода: <?= $resultOfWeather["temp_c"]; ?>°C</p>
-    <p>Влажность: <?= $resultOfWeather["humidity"]; ?> %</p>
-    <p>Ветер: <?= $resultOfWeather["wind"]; ?> км/ч</p>
-    <p>Дата/Время: <?= $resultOfWeather["localTime"]; ?> </p>
+    <h2>Погода в городе <?= $weatherResult["location"]; ?></h2>
+    <p>Погода: <?= $weatherResult["temp_c"]; ?>°C</p>
+    <p>Влажность: <?= $weatherResult["humidity"]; ?> %</p>
+    <p>Ветер: <?= $weatherResult["wind"]; ?> км/ч</p>
+    <p>Дата/Время: <?= $weatherResult["localTime"]; ?> </p>
 </div>
