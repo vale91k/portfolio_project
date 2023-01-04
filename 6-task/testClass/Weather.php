@@ -1,51 +1,54 @@
 <?php
 
 
+
 class Weather
 {
     const API_KEY = '76eaa38077084ff9b6895618221212&q=';
     const BASE_URL = 'http://api.weatherapi.com/v1/current.json?key=';
     /**
+     * Поле класса для принятия названия города cityName. Может использоваться в запросах:
      * @var string
+     * private getCityName
+     * private setCityName
      */
     private $cityName;
 
     public function getCityName(): string
     {
-        return $this->setCityName();
+        return $this->setCityName('Magnitogorsk');
     }
 
-    public function setCityName(string $cityName = 'Erevan'): string
+    public function setCityName(string $cityName): string
     {
-        /**
-         * Наработка сеттера, если понадобится проверка наличия города из бд
-         * $result = $mysqli->query("SELECT * FROM Key WHERE Name LIKE '%".$Name."%'");
-         * if ($result->num_rows > 0) {
-         * do Something
-         * }
-         */
         return $this->cityName = $cityName;
     }
+
 
     public function getWeatherUrl(): string
     {
         return $url = self::BASE_URL . self::API_KEY . self::getCityName();
     }
 
-    private function getParsingWeatherData()
+    private function requestWeatherData()
     {
         return json_decode(file_get_contents($this->getWeatherUrl()), true);
     }
 
+    private function compressedWeatherData()
+    {
+        return $this->requestWeatherData();
+    }
+
     public function getWeatherData(): array
     {
-        $weatherData = $this->getParsingWeatherData();
-        $res["location"] = $weatherData["location"]["name"];
-        $res["temp_c"] = $weatherData["current"]["temp_c"];
-        $res["humidity"] = $weatherData["current"]["humidity"];
-        $res["wind"] = $weatherData["current"]["wind_kph"];
-        $res["localTime"] = $weatherData["location"]["localtime"];
-        $res["icon"] = $weatherData["current"]["condition"]["icon"];
+
+        $res["location"] = $this->compressedWeatherData()["location"]["name"];
+        $res["temp_c"] = $this->compressedWeatherData()["current"]["temp_c"];
+        $res["humidity"] = $this->compressedWeatherData()["current"]["humidity"];
+        $res["wind"] = $this->compressedWeatherData()["current"]["wind_kph"];
+        $res["localTime"] = $this->compressedWeatherData()["location"]["localtime"];
+        $res["icon"] = $this->compressedWeatherData()["current"]["condition"]["icon"];
         return $res;
     }
 }
