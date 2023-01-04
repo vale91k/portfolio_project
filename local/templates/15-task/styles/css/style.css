@@ -36,6 +36,12 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 18px;
 
 }
+.container_contacts {
+    width: 100%;
+    max-width: 500px;
+    font-size: 18px;
+
+}
 
 /* Main page */
 .main_page {
@@ -99,7 +105,49 @@ h1, h2, h3, h4, h5, h6 {
     width: 5%;
     align-items: center;
 }
+/* Pop Up Contacts */
+.btn {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    border: 2px solid darkcyan;
+    padding: 10px 30px;
+    color: darkcyan;
+    text-transform: uppercase;
+    font-family: arial;
+    cursor: pointer;
+    transition: .3s all;
+}
+.popup{
+    display: block;
+    margin: 0 auto;
+    width: 20%;
+    background-color: darkcyan;
+    color: black;
+    padding: 30px;
+    position: relative;
+    transition: .5s all;
+    top: -999px;
 
+}
+.popup input{
+    display: block;
+    width: 100%;
+    border: none;
+    height: 25px;
+    line-height: 25px;
+    margin: 10px 0;
+}
+.submit{
+    background-color: teal;
+    cursor: pointer;
+}
+#modal{
+    display: none;
+}
+#modal:checked ~.popup{
+    top: 0;
+}
 /*nav */
 .nav {
     font-size: 14px;
