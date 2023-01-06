@@ -5,8 +5,9 @@ class Weather
 {
     const API_KEY = '76eaa38077084ff9b6895618221212&q=';
     const BASE_URL = 'http://api.weatherapi.com/v1/current.json?key=';
+    const DEFAULT_CITY = 'Magnitogorsk';
     /**
-     * Поле несет в себе название города.
+     * Название города
      * @var string
      */
     private string $cityName;
@@ -18,17 +19,17 @@ class Weather
     public function getCityName(): string
     {
         if (empty($this->cityName)) {
-            return $this->cityName = 'Magnitogorsk';
+            $this->setCityName(self::DEFAULT_CITY);
         }
         return $this->cityName;
     }
 
     /**
-     * Метод устанавливает название города, на вход принимает название города (только строку).
+     * Устанавливает название города
      * @param string $cityName
      * @return $this
      */
-    public function setCityName(string $cityName)
+    public function setCityName(string $cityName): Weather
     {
         $this->cityName = $cityName;
         return $this;
@@ -40,11 +41,11 @@ class Weather
      */
     public function getWeatherUrl(): string
     {
-        return $url = self::BASE_URL . self::API_KEY . self::getCityName();
+        return $url = self::BASE_URL . self::API_KEY . $this->getCityName();
     }
 
     /**
-     * Метод формирует массив с ссылки, которую получили методом getWeatherUrl().
+     * Метод запрашивает данные о погоде.
      * @return mixed
      */
     private function requestWeatherData()
@@ -53,34 +54,34 @@ class Weather
     }
 
     /**
-     * Метод получает отфильтрованный массив с нужными данными о погоде
+     * Метод получает отфильтрованный массив с данными о погоде
      * @return array
      */
     public function getWeatherData(): array
     {
         $weatherData = $this->requestWeatherData();
-        $res =[
-            'location' => $weatherData["location"]["name"],
+        return [
+            'location_name' => $weatherData["location"]["name"],
             'temp_c' => $weatherData["current"]["temp_c"],
             'humidity' => $weatherData["current"]["humidity"],
             'wind' => $weatherData["current"]["wind_kph"],
             'localTime' => $weatherData["location"]["localtime"],
             'icon' => $weatherData["current"]["condition"]["icon"],
         ];
-        return $res;
     }
 }
 
-$weatherResult = new Weather();
-$weatherResult = $weatherResult->getWeatherData();
+$weather = new Weather();
+$weatherResult = $weather->getWeatherData();
 
 echo '<pre>';
 print_r($weatherResult);
 echo '</pre>';
 
+
 ?>
 <div class="weather">
-    <h2>Погода в городе <?= $weatherResult["location"]; ?></h2>
+    <h2>Погода в городе <?= $weatherResult["location_name"]; ?></h2>
     <p>Погода: <?= $weatherResult["temp_c"]; ?>°C</p>
     <p>Влажность: <?= $weatherResult["humidity"]; ?> %</p>
     <p>Ветер: <?= $weatherResult["wind"]; ?> км/ч</p>
