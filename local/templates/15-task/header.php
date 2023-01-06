@@ -23,8 +23,6 @@ require_once 'tasks/TimeIconClass.php';
     Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/styles/css/style.css");
     ?>
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="/styles/images/ico_site.png" href="<?=SITE_TEMPLATE_PATH?>/ico_site.png">
-    <link rel="shortcut icon" href="<?=SITE_TEMPLATE_PATH?>/ico_site.png">
     <title><? $APPLICATION->ShowTitle(); ?></title>
 
 </head>
