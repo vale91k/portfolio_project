@@ -19,6 +19,11 @@ ErrorDocument 404 /404.php
   RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
   RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
   RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+
+  # upper case -> lower case
+  RewriteCond %{REQUEST_URI} [A-Z]
+  RewriteCond %{REQUEST_URI} ^(.*)/api/index\.php$
+  RewriteRule . ${lc:%{REQUEST_URI}} [R=301,L]
 </IfModule>
 
 <IfModule mod_dir.c>
