@@ -32,7 +32,6 @@ require_once 'tasks/TimeIconClass.php';
     <div class="panel"></div>
     <header class="header">
         <div class="container">
-
             <div class="header__inner">
                 <div class="header__logo">
                     <a href="/" class="index_link"> Ivan's Blog</a>
@@ -46,10 +45,19 @@ require_once 'tasks/TimeIconClass.php';
                     <a class="nav__link" href="#">Task4</a>
                 </nav>
             </div>
+            <input type="checkbox" id="modal">
+            <label class="nav__link" for="modal">Связь со мной</label>
+            <form action="" class="popup">
+                <span>Связь со мной</span>
+                <a class="cont__link" href="#">Телега</a>
+                <a class="cont__link" href="#">Вк</a>
+                <a class="cont__link" href="#">Почта</a>
+            </form>
         </div>
     </header>
     <div class="main_page">
         <div class="container">
+
             <div class="main_page__inner">
                 <h1 class="main_page__title">Welcome to my page</h1>
             </div>
