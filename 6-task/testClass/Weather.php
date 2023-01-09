@@ -1,18 +1,18 @@
 <?php
 
 
-class Weather
+class WeatherService
 {
     /**
      * @var string Ключ для генерации ссылки
      */
     const API_KEY = '76eaa38077084ff9b6895618221212&q=';
     /**
-     * @var string Url для генерации ссылки
+     * @var string End-point по получению данных о погоде
      */
     const BASE_URL = 'http://api.weatherapi.com/v1/current.json?key=';
     /**
-     * @var string Дефолтное название города
+     * @var string Название города латиницей по умолчанию
      */
     const DEFAULT_CITY = 'Magnitogorsk';
     /**
@@ -26,7 +26,7 @@ class Weather
      */
     private string $locationName;
     /**
-     * Температура цельсия
+     * Температура по цельсию
      * @var string
      */
     private string $tempValue;
@@ -76,7 +76,7 @@ class Weather
      * @param string $cityName
      * @return $this
      */
-    public function setCityName(string $cityName): Weather
+    public function setCityName(string $cityName): WeatherService
     {
         $this->cityName = $cityName;
         return $this;
@@ -88,7 +88,7 @@ class Weather
      */
     public function getLocationName(): string
     {
-        return $this->locationName;
+        return (string)$this->locationName;
     }
 
     /**
@@ -96,7 +96,7 @@ class Weather
      * @param string $locationName
      * @return $this
      */
-    public function setLocationName(string $locationName): Weather
+    public function setLocationName(string $locationName): WeatherService
     {
         $this->locationName = $locationName;
         return $this;
@@ -108,15 +108,15 @@ class Weather
      */
     public function getTempValue(): string
     {
-        return $this->tempValue;
+        return (string)$this->tempValue;
     }
 
     /**
-     * Устанавливает температуру с массива данных
+     * Устанавливает температуру
      * @param string $tempValue
      * @return $this
      */
-    public function setTempValue(string $tempValue): Weather
+    public function setTempValue(string $tempValue): WeatherService
     {
         $this->tempValue = $tempValue;
         return $this;
@@ -128,7 +128,7 @@ class Weather
      */
     public function getHumidityValue(): string
     {
-        return $this->humidityValue;
+        return (string)$this->humidityValue;
     }
 
     /**
@@ -136,7 +136,7 @@ class Weather
      * @param string $humidityValue
      * @return $this
      */
-    public function setHumidityValue(string $humidityValue): Weather
+    public function setHumidityValue(string $humidityValue): WeatherService
     {
         $this->humidityValue = $humidityValue;
         return $this;
@@ -148,7 +148,7 @@ class Weather
      */
     public function getWindValue(): string
     {
-        return $this->windValue;
+        return (string)$this->windValue;
     }
 
     /**
@@ -156,7 +156,7 @@ class Weather
      * @param string $windValue
      * @return $this
      */
-    public function setWindValue(string $windValue): Weather
+    public function setWindValue(string $windValue): WeatherService
     {
         $this->windValue = $windValue;
         return $this;
@@ -168,7 +168,7 @@ class Weather
      */
     public function getLocalTime(): string
     {
-        return $this->localTime;
+        return (string)$this->localTime;
     }
 
     /**
@@ -176,7 +176,7 @@ class Weather
      * @param string $localTime
      * @return $this
      */
-    public function setLocalTime(string $localTime): Weather
+    public function setLocalTime(string $localTime): WeatherService
     {
         $this->localTime = $localTime;
         return $this;
@@ -188,7 +188,7 @@ class Weather
      */
     public function getIconWeather(): string
     {
-        return $this->iconWeather;
+        return (string)$this->iconWeather;
     }
 
     /**
@@ -196,7 +196,7 @@ class Weather
      * @param string $iconWeather
      * @return $this
      */
-    public function setIconWeather(string $iconWeather): Weather
+    public function setIconWeather(string $iconWeather): WeatherService
     {
         $this->iconWeather = $iconWeather;
         return $this;
@@ -208,7 +208,7 @@ class Weather
      */
     public function getWeatherUrl(): string
     {
-        return $url = self::BASE_URL . self::API_KEY . $this->getCityName();
+        return (string)$url = self::BASE_URL . self::API_KEY . $this->getCityName();
     }
 
     /**
@@ -222,9 +222,9 @@ class Weather
 
     /**
      * Метод получает отфильтрованный массив с данными о погоде
-     * @return Weather
+     * @return void
      */
-    public function getWeatherData(): Weather
+    private function getWeatherData(): void
     {
         $weatherData = $this->requestWeatherData();
         $this->setLocationName($weatherData["location"]["name"]);
@@ -233,23 +233,6 @@ class Weather
         $this->setWindValue($weatherData["current"]["wind_kph"]);
         $this->setLocalTime($weatherData["location"]["localtime"]);
         $this->setIconWeather($weatherData["current"]["condition"]["icon"]);
-        return $this;
-
     }
 }
 
-$weather = new Weather();
-echo '<pre>';
-var_dump($weather);
-echo '</pre>';
-
-
-?>
-<div class="weather">
-    <h2>Погода в городе <?= $weather->getLocationName(); ?></h2>
-    <p>Погода: <?= $weather->getTempValue(); ?>°C</p>
-    <p>Влажность: <?= $weather->getHumidityValue() ?> %</p>
-    <p>Ветер: <?= $weather->getWindValue() ?> км/ч</p>
-    <p>Дата/Время: <?= $weather->getLocalTime() ?> </p>
-    <img class="header__picture" src="<?= $weather->getIconWeather(); ?>">
-</div>
