@@ -1,6 +1,9 @@
 <?php
 
 
+namespace weather;
+
+
 class WeatherService
 {
     /**
@@ -235,4 +238,3 @@ class WeatherService
         $this->setIconWeather($weatherData["current"]["condition"]["icon"]);
     }
 }
-
