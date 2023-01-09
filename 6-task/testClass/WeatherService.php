@@ -221,7 +221,7 @@ class WeatherService
     }
 
     /**
-     * Метод получает отфильтрованный массив с данными о погоде
+     * Запрашивает погоду, устанавливает данные в поля класса
      * @return void
      */
     private function getWeatherData(): void
