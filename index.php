@@ -8,7 +8,6 @@ use App\Weather;
 
 
 //TODO Стереть после ознакомления
-WeatherService::test();
 Weather::test();
 
 ?>
