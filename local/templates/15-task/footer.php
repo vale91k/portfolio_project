@@ -2,9 +2,22 @@
 <?
 IncludeTemplateLangFile(__FILE__);
 ?>
+
 </html>
+
 <footer>
-    <h1>Все права защищены</h1>
+    <?
+    $APPLICATION->IncludeComponent(
+        "app:weather",
+        "",
+        array(),
+        false
+    );
+    ?>
+
+
 </footer>
+
 </div>
+
 </body>
