@@ -1,15 +1,11 @@
-<? if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
-<?
-IncludeTemplateLangFile(__FILE__);
-
-use Bitrix\Main\Page\Asset;
-
-?>
 <?php
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 
-
+use Bitrix\Main\Localization\Loc;
+use Bitrix\Main\Page\Asset;
 use Tasks\TimeIconClass;
 
+Loc::loadMessages(__FILE__);
 require_once 'tasks/TimeIconClass.php';
 
 
@@ -18,10 +14,7 @@ require_once 'tasks/TimeIconClass.php';
 <html lang="<?= LANGUAGE_ID; ?>">
 <head>
     <? $APPLICATION->ShowHead(); ?>
-
-    <?
-    Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/styles/css/style.css");
-    ?>
+    <? Asset::getInstance()->addCss(SITE_TEMPLATE_PATH . "/styles/css/style.css"); ?>
     <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200;600&display=swap" rel="stylesheet">
     <title><? $APPLICATION->ShowTitle(); ?></title>
 

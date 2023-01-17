@@ -1,22 +1,21 @@
-<?
+<?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
-$arComponentDescription = array(
-	"NAME" => GetMessage("IBLOCK_NEWS_NAME"),
-	"DESCRIPTION" => GetMessage("IBLOCK_NEWS_DESCRIPTION"),
-	"ICON" => "/images/news_all.gif",
+$arComponentDescription = [
+	"APP_WEATHER_NAME" => GetMessage("WEATHER_NAME_BLOCK"),
+	"WEATHER_DESCRIPTION" => GetMessage("WEATHER_BLOCK_DESCRIPTION"),
 	"COMPLEX" => "Y",
-	"PATH" => array(
+	"PATH" => [
 		"ID" => "content",
-		"CHILD" => array(
+		"CHILD" => [
 			"ID" => "news",
-			"NAME" => GetMessage("T_IBLOCK_DESC_NEWS"),
+			"WEATHER_NAME" => GetMessage("T_WEATHER_BLOCK_DESC"),
 			"SORT" => 10,
-			"CHILD" => array(
+			"CHILD" => [
 				"ID" => "news_cmpx",
-			),
-		),
-	),
-);
+			],
+		],
+	],
+];
 
 ?>
