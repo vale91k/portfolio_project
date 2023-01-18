@@ -1,2 +1,2 @@
 <?php
-$MESS ["THE_MY_BLOG"] = "Ivan's Blog";
+$MESS ["HEADER_SITE_TITTLE"] = "Ivan's Blog";

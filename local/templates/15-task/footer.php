@@ -7,7 +7,7 @@ Loc::loadMessages(__FILE__);
 ?>
 </html>
 <footer>
-    <?
+    <?php
     $APPLICATION->IncludeComponent(
         "app:weather",
         "",
