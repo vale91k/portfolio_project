@@ -15,13 +15,13 @@ $weatherService = $arResult['WEATHER_SERVICE'];
         <div class="h3_text">
             <h3><?= Loc::getMessage("CURRENT_WEATHER") . $weatherService->getLocationName(); ?></h3>
             <div class="icon">
-                <img src="<?= $weatherService->getIconWeather() ?>" alt="icon">
+                <img src="<?= $weatherService->getIconWeather(); ?>" alt="icon">
             </div>
-            <h2><?= $weatherService->getTempValue() ?>&#8451;</h2>
+            <h2><?= $weatherService->getTempValue(); ?>&#8451;</h2>
         </div>
         <ul class="text_decor">
             <li> <?= Loc::getMessage("CURRENT_HUMIDITY") . $weatherService->getHumidityValue(); ?> &#37;</li>
-            <li> <?= Loc::getMessage("CURRENT_WIND") . $weatherService->getWindValue() ?> km/h</li>
+            <li> <?= Loc::getMessage("CURRENT_WIND") . $weatherService->getWindValue(); ?> km/h</li>
         </ul>
 
     </div>
