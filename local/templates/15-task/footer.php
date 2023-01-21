@@ -1,10 +1,22 @@
-<?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<?
-IncludeTemplateLangFile(__FILE__);
+<?php
+if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+
+use Bitrix\Main\Localization\Loc;
+
+Loc::loadMessages(__FILE__);
 ?>
 </html>
 <footer>
-    <h1>Все права защищены</h1>
-</footer>
-</div>
+    <?php
+    $APPLICATION->IncludeComponent(
+        "app:weather",
+        "",
+        [],
+        false
+    );
+    ?>
+        </footer>
+
+    </div>
+
 </body>
