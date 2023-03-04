@@ -1,0 +1,13 @@
+<?
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+$APPLICATION->SetTitle("47-task");
+?>
+<?php
+$APPLICATION->IncludeComponent(
+    "app:47-task",
+    "",
+    [],
+    false
+);
+?>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
