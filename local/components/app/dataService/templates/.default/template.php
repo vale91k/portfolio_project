@@ -8,6 +8,8 @@ Loc::loadMessages(__FILE__);
 /** @var $dataService \App\Services\DataService */
 
 $dataService = $arResult['DATA_SERVICE'];
+$arCaptionList = $dataService->getParsedListCategory();
+$arCaptionName = $dataService->getCaptionsParsedList($id = Null);
 ?>
 
 
@@ -18,11 +20,10 @@ $dataService = $arResult['DATA_SERVICE'];
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <?php
-                foreach ($dataService->getParsedListCategory() as $k => $category) {
+                foreach ($arCaptionList as $k => $category) {
                     ?>
                     <a class="nav-item nav-link
                          <?php
-                    $categoryId = $category['name'];
                     if ($k === 0) {
                         echo 'active';
                     }
@@ -32,9 +33,8 @@ $dataService = $arResult['DATA_SERVICE'];
                        aria-controls="nav-<?= $category['category_id']; ?>"
                        aria-selected="false"><?= $category['name']; ?>
                     </a>
-                    <?php
-                }
-                ?>
+               <? } ?>
+
             </div>
 
         </nav>
@@ -42,11 +42,10 @@ $dataService = $arResult['DATA_SERVICE'];
             <div class="tab-pane fade show active" id="nav-1" role="tabpanel">
                 <div class="row mb-4">
                     <?php
-                    foreach ($dataService->getCaptionsParsedList(1) as $k => $elementName) {
-                        $elementNameId = $elementName['name'];
+                    foreach ($arCaptionName(1) as $k => $elementName) {
                         ?>
                         <div class="col-12 mt-3 mb-3">
-                            <h2><?= $elementNameId; ?></h2>
+                            <h2><?= $elementName['name']; ?></h2>
                             <p><i>Дата статьи</i></p>
                             <p>Описание статьи</p>
                         </div>
@@ -54,18 +53,15 @@ $dataService = $arResult['DATA_SERVICE'];
                             <hr>
                         </div>
                     <? } ?>
-
-
                 </div>
             </div>
             <div class="tab-pane fade" id="nav-2" role="tabpanel">
                 <div class="row mb-4">
                     <?php
-                    foreach ($dataService->getCaptionsParsedList(2) as $k => $elementName) {
-                        $elementNameId = $elementName['name'];
+                    foreach ($arCaptionName(2) as $k => $elementName) {
                         ?>
                         <div class="col-12 mt-3 mb-3">
-                            <h2><?= $elementNameId; ?></h2>
+                            <h2><?= $elementName['name']; ?></h2>
                             <p><i>Дата статьи</i></p>
                             <p>Описание статьи</p>
                         </div>
@@ -78,11 +74,10 @@ $dataService = $arResult['DATA_SERVICE'];
             <div class="tab-pane fade" id="nav-3" role="tabpanel">
                 <div class="row mb-4">
                     <?php
-                    foreach ($dataService->getCaptionsParsedList(3) as $k => $elementName) {
-                        $elementNameId = $elementName['name'];
+                    foreach ($arCaptionName(3) as $k => $elementName) {
                         ?>
                         <div class="col-12 mt-3 mb-3">
-                            <h2><?= $elementNameId; ?></h2>
+                            <h2><?= $elementName['name']; ?></h2>
                             <p><i>Дата статьи</i></p>
                             <p>Описание статьи</p>
                         </div>

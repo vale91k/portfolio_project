@@ -51,7 +51,7 @@ $APPLICATION->ShowPanel();
                 <img class="header__picture" src="<?= TimeIconClass::getTimeIcon(); ?>">
                 <nav class="nav">
                     <a class="nav__link" href="#">About</a>
-                    <a class="nav__link" href="/47-task/index.php">47-task</a>
+                    <a class="nav__link" href="/dataService/index.php">Data Service</a>
                     <a class="nav__link" href="#">Task2</a>
                     <a class="nav__link" href="#">Task3</a>
                     <a class="nav__link" href="#">Task4</a>
