@@ -107,16 +107,4 @@ class DataService
         return json_decode($output, true);
     }
 
-    /**
-     * Получение массива с детальным текстом и датой
-     * @return mixed
-     */
-    public function getParsedDetailText()
-    {
-        $res = [];
-        for ($i = 1; $i < 17; $i++) {
-            $res[] = self::getListDetailText($i);
-        }
-        return $res;
-    }
 }
