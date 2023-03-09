@@ -22,7 +22,7 @@ class DataServiceComponent extends \CBitrixComponent
     {
         /*Создание объекта класса */
         $this->dataService = new DataService();
-        /* */
+        /* Запись в arResult для будущего компонента detailText с метода */
         $this->arResult['ELEMENT_DATA'] = $this->dataService->getListDetailText($this->arParams['ARTICLE_ID']);
         /*Данные с метода getMenuItems записывается в arResult['MENU_ITEMS']  */
         $this->arResult['MENU_ITEMS'] = $this->getMenuItems();
