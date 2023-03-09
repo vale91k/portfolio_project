@@ -1,28 +1,4 @@
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
-.wrap_last{
-    max-width: 3000px;
-    max-height: 300px;
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 15px;
+.container_new{
+    margin: 200px;
 
-}
-.item{
-    padding: 15px;
-    font-size: 15px;
-    border: 1px solid black;
-    height: fit-content;
-    width: fit-content;
-    flex-basis: 15%;
-}
-
-.text{
-    border: black solid;
-}
-.text_decor{
-    text-decoration: underline;
-    text-align: left;
 }

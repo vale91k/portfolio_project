@@ -68,22 +68,3 @@ $APPLICATION->ShowPanel();
         </div>
     </header>
 
-    <div class="main_page">
-        <? if ($APPLICATION->GetCurPage() == "/") { ?>
-            <div class="container">
-                <div class="main_page__inner">
-                    <h1 class="main_page__title">Welcome to my page</h1>
-                </div>
-
-            </div>
-        <? } else { ?>
-            <div class="container">
-                <div class="main_page__inner">
-                    <h1 class="main_page__title">Another Page</h1>
-                </div>
-
-            </div>
-        <? } ?>
-    </div>
-
-
