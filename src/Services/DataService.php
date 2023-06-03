@@ -5,7 +5,6 @@ namespace App\Services;
 class DataService
 
 {
-
     /**
      * @var string Логин для доступа
      */
@@ -107,4 +106,14 @@ class DataService
         return json_decode($output, true);
     }
 
+    /**
+     * Получение детального текста и даты в массиве
+     * @param $article_id
+     * @return array
+     */
+    public function getParsedDetailText($article_id): array
+    {
+        $parData = $this->getListDetailText($article_id);
+        return $parData['data'];
+    }
 }
