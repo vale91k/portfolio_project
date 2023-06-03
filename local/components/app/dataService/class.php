@@ -61,21 +61,20 @@ class DataServiceComponent extends \CBitrixComponent
     {
         return $_GET['category'] ? (int)$_GET['category'] : (int)$this->arResult['MENU_ITEMS'][0]['category_id'];
     }
-
-//    /**
-//     * Возвращает id артикля для детального текста
-//     * @return int
-//     */
-//    private function getArticleId(): int
-//    {
-//        return $_GET['article'] ? (int)$_GET['article'] : (int)$this->arResult['ELEMENT_DATA'][0]['article_id'];
-//    }
-//    /**
-//     *
-//     * Возвращает ссылку для категорий
-//     */
-//    private function getLinkCategory()
-//    {
-//        return $APPLICATION->GetCurPage() . '?category=';
-//    }
+/*
+    /**
+     * Возвращает id артикля для детального текста
+     * @return int
+    private function getArticleId(): int
+    {
+        return $_GET['article'] ? (int)$_GET['article'] : (int)$this->arResult['ELEMENT_DATA'][0]['article_id'];
+    }
+    /**
+     *
+     * Возвращает ссылку для категорий
+    private function getLinkCategory()
+    {
+        return $APPLICATION->GetCurPage() . '?category=';
+    }
+*/
 }

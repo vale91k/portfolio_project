@@ -8,7 +8,6 @@ $APPLICATION->SetTitle("Ivan's Blog");
             <div class="main_page__inner">
                 <h1 class="main_page__title">Welcome to my page</h1>
             </div>
-
         </div>
     </div>
 

@@ -34,14 +34,14 @@ Loc::loadMessages(__FILE__);
             <div class="tab-pane fade show active" role="tabpanel">
                 <div class="row mb-4">
                     <?php
-                    $exampleObject = new \App\Services\DataService();
+                    $dataService = new \App\Services\DataService();
                     foreach ($arResult['ITEMS'] as $key => $item) {
                         ?>
                         <div class="col-12 mt-3 mb-3">
                             <p href="/dataService/detail/?id=<?= $item['article_id']; ?>">
                             <h2><?= $item['name']; ?></h2>
-                            <p><i><?= $exampleObject->getParsedDetailText($item['article_id'])['date']; ?></i></p>
-                            <p><?= $exampleObject->getParsedDetailText($item['article_id'])['text']; ?></p>
+                            <p><i><?= $dataService->getParsedDetailText($item['article_id'])['date']; ?></i></p>
+                            <p><?= $dataService->getParsedDetailText($item['article_id'])['text']; ?></p>
                             </p>
                         </div>
                         <div class="col-12">
