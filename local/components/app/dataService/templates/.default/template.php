@@ -35,13 +35,13 @@ Loc::loadMessages(__FILE__);
                 <div class="row mb-4">
                     <?php
                     $exampleObject = new \App\Services\DataService();
-                    foreach ($arResult['ITEMS'] as $key => $nameTag) {
+                    foreach ($arResult['ITEMS'] as $key => $item) {
                         ?>
                         <div class="col-12 mt-3 mb-3">
-                            <p href="/dataService/detail/?id=<?= $nameTag['article_id']; ?>">
-                            <h2><?= $nameTag['name']; ?></h2>
-                            <p><i><?= $exampleObject->getParsedDetailText($nameTag['article_id'])['date']; ?></i></p>
-                            <p><?= $exampleObject->getParsedDetailText($nameTag['article_id'])['text']; ?></p>
+                            <p href="/dataService/detail/?id=<?= $item['article_id']; ?>">
+                            <h2><?= $item['name']; ?></h2>
+                            <p><i><?= $exampleObject->getParsedDetailText($item['article_id'])['date']; ?></i></p>
+                            <p><?= $exampleObject->getParsedDetailText($item['article_id'])['text']; ?></p>
                             </p>
                         </div>
                         <div class="col-12">

@@ -54,7 +54,7 @@ class DataService
      * Подключение к названиям категорий
      * @return mixed
      */
-    public function getListCategory()
+    public function getListCategory(): array
     {
         curl_setopt($this->curl_client, CURLOPT_URL, self::URL_CATEGORIES);
         $output = curl_exec($this->curl_client);
@@ -76,7 +76,7 @@ class DataService
      * @param $categoryId
      * @return mixed
      */
-    public function getCaptionsList($categoryId)
+    public function getCaptionsList($categoryId): array
     {
         curl_setopt($this->curl_client, CURLOPT_URL, self::URL_CAPTION_CATEGORY . $categoryId . '/');
         $output = curl_exec($this->curl_client);
@@ -99,7 +99,7 @@ class DataService
      * @param $id
      * @return mixed
      */
-    public function getListDetailText($id)
+    public function getListDetailText($id): array
     {
         curl_setopt($this->curl_client, CURLOPT_URL, self::URL_DETAIL_DATA . $id . '/');
         $output = curl_exec($this->curl_client);
