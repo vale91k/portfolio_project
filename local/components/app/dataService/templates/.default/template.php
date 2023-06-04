@@ -22,7 +22,7 @@ Loc::loadMessages(__FILE__);
                     }
                     ?>
                         "
-                       href="<?= $APPLICATION->GetCurPage() . '?category=' . $category['category_id']; ?>"
+                       href="<?= $arResult['LINK_CAT'] . $category['category_id']; ?>"
                        role="tab"
                        aria-controls="nav-<?= $category['category_id']; ?>"
                        aria-selected="false"><?= $category['name']; ?>
@@ -34,14 +34,13 @@ Loc::loadMessages(__FILE__);
             <div class="tab-pane fade show active" role="tabpanel">
                 <div class="row mb-4">
                     <?php
-                    $dataService = new \App\Services\DataService();
                     foreach ($arResult['ITEMS'] as $key => $item) {
                         ?>
                         <div class="col-12 mt-3 mb-3">
-                            <p href="/dataService/detail/?id=<?= $item['article_id']; ?>">
+                            <p>
                             <h2><?= $item['name']; ?></h2>
-                            <p><i><?= $dataService->getParsedDetailText($item['article_id'])['date']; ?></i></p>
-                            <p><?= $dataService->getParsedDetailText($item['article_id'])['text']; ?></p>
+                            <p><i><?= $item['date']; ?></i></p>
+                            <p><?= $item['text']; ?></p>
                             </p>
                         </div>
                         <div class="col-12">

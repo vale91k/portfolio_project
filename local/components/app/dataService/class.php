@@ -14,25 +14,17 @@ class DataServiceComponent extends \CBitrixComponent
     protected DataService $dataService;
 
     /**
-     * @return mixed|void|null
+     * @return void
      */
     public function executeComponent()
     {
         $this->dataService = new DataService();
-        $this->arResult['ELEMENT_DATA'] = $this->getElementData();
         $this->arResult['MENU_ITEMS'] = $this->getMenuItems();
         $this->arResult['CATEGORY_ID'] = $this->getCategoryId();
-//        $this->arResult['ARTICLE_ID'] = $this->getArticleId();
+        $this->arResult['LINK_CAT'] = $this->getLinkCategory();
         $this->arResult['ITEMS'] = $this->getItems();
+        $this->fillItems();
         $this->includeComponentTemplate();
-    }
-    /**
-     * Возвращает описания статей и их дату
-     * @return array
-     */
-    private function getElementData(): array
-    {
-        return $this->dataService->getParsedDetailText($this->arParams['ARTICLE_ID']);
     }
 
     /**
@@ -59,22 +51,28 @@ class DataServiceComponent extends \CBitrixComponent
      */
     private function getCategoryId(): int
     {
-        return $_GET['category'] ? (int)$_GET['category'] : (int)$this->arResult['MENU_ITEMS'][0]['category_id'];
+        return $_GET['category'] ? (int)$_GET['category'] : (int)$this->arResult['ITEMS'][0]['category_id'];
     }
-/*
-    /**
-     * Возвращает id артикля для детального текста
-     * @return int
-    private function getArticleId(): int
-    {
-        return $_GET['article'] ? (int)$_GET['article'] : (int)$this->arResult['ELEMENT_DATA'][0]['article_id'];
-    }
+
     /**
      *
      * Возвращает ссылку для категорий
-    private function getLinkCategory()
+     */
+    private function getLinkCategory(): string
     {
+        global $APPLICATION;
         return $APPLICATION->GetCurPage() . '?category=';
     }
-*/
+
+    /**
+     * Заполняет массив ITEMS детальным текстом и датой
+     */
+    private function fillItems()
+    {
+        foreach ($this->arResult['ITEMS'] as &$key) {
+            $key['date'] = $this->dataService->getParsedDetailText($key['article_id'])['date'];
+            $key['text'] = $this->dataService->getParsedDetailText($key['article_id'])['text'];
+        }
+    }
+
 }

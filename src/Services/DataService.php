@@ -108,12 +108,12 @@ class DataService
 
     /**
      * Получение детального текста и даты в массиве
-     * @param $article_id
+     * @param $articleId
      * @return array
      */
-    public function getParsedDetailText($article_id): array
+    public function getParsedDetailText($articleId): array
     {
-        $parData = $this->getListDetailText($article_id);
+        $parData = $this->getListDetailText($articleId);
         return $parData['data'];
     }
 }
