@@ -6,7 +6,7 @@ if (!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
     die();
 
 
-class DataServiceComponent extends \CBitrixComponent
+class DataServiceComponent extends CBitrixComponent
 {
     /**
      * @var $dataService DataService
@@ -21,9 +21,9 @@ class DataServiceComponent extends \CBitrixComponent
         $this->dataService = new DataService();
         $this->arResult['MENU_ITEMS'] = $this->getMenuItems();
         $this->arResult['CATEGORY_ID'] = $this->getCategoryId();
-        $this->arResult['LINK_CAT'] = $this->getLinkCategory();
         $this->arResult['ITEMS'] = $this->getItems();
         $this->fillItems();
+        $this->fillLinkCategory();
         $this->includeComponentTemplate();
     }
 
@@ -55,13 +55,15 @@ class DataServiceComponent extends \CBitrixComponent
     }
 
     /**
-     *
-     * Возвращает ссылку для категорий
+     * Заполняет массив MENU_ITEMS ссылкой для категорий
      */
-    private function getLinkCategory(): string
+    private function fillLinkCategory(): void
     {
         global $APPLICATION;
-        return $APPLICATION->GetCurPage() . '?category=';
+        foreach ($this->arResult['MENU_ITEMS'] as &$category) {
+            $category['link'] = $APPLICATION->GetCurPage() . '?category=' . $category['category_id'];
+        }
+
     }
 
     /**
@@ -69,9 +71,9 @@ class DataServiceComponent extends \CBitrixComponent
      */
     private function fillItems()
     {
-        foreach ($this->arResult['ITEMS'] as &$key) {
-            $key['date'] = $this->dataService->getParsedDetailText($key['article_id'])['date'];
-            $key['text'] = $this->dataService->getParsedDetailText($key['article_id'])['text'];
+        foreach ($this->arResult['ITEMS'] as &$item) {
+            $item['date'] = $this->dataService->getParsedDetailText($item['article_id'])['date'];
+            $item['text'] = $this->dataService->getParsedDetailText($item['article_id'])['text'];
         }
     }
 

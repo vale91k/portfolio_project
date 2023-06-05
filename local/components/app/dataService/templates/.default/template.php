@@ -22,7 +22,7 @@ Loc::loadMessages(__FILE__);
                     }
                     ?>
                         "
-                       href="<?= $arResult['LINK_CAT'] . $category['category_id']; ?>"
+                       href="<?= $category['link']; ?>"
                        role="tab"
                        aria-controls="nav-<?= $category['category_id']; ?>"
                        aria-selected="false"><?= $category['name']; ?>
@@ -41,7 +41,6 @@ Loc::loadMessages(__FILE__);
                             <h2><?= $item['name']; ?></h2>
                             <p><i><?= $item['date']; ?></i></p>
                             <p><?= $item['text']; ?></p>
-                            </p>
                         </div>
                         <div class="col-12">
                             <hr>
