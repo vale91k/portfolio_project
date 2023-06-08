@@ -16,14 +16,14 @@ class DataServiceComponent extends CBitrixComponent
     /**
      * @return void
      */
-    public function executeComponent()
+    public function executeComponent(): void
     {
         $this->dataService = new DataService();
         $this->arResult['MENU_ITEMS'] = $this->getMenuItems();
         $this->arResult['CATEGORY_ID'] = $this->getCategoryId();
         $this->arResult['ITEMS'] = $this->getItems();
         $this->fillItems();
-        $this->fillLinkCategory();
+        $this->fillMenuItems();
         $this->includeComponentTemplate();
     }
 
@@ -57,7 +57,7 @@ class DataServiceComponent extends CBitrixComponent
     /**
      * Заполняет массив MENU_ITEMS ссылкой для категорий
      */
-    private function fillLinkCategory(): void
+    private function fillMenuItems(): void
     {
         global $APPLICATION;
         foreach ($this->arResult['MENU_ITEMS'] as &$category) {
@@ -69,7 +69,7 @@ class DataServiceComponent extends CBitrixComponent
     /**
      * Заполняет массив ITEMS детальным текстом и датой
      */
-    private function fillItems()
+    private function fillItems(): void
     {
         foreach ($this->arResult['ITEMS'] as &$item) {
             $item['date'] = $this->dataService->getParsedDetailText($item['article_id'])['date'];
