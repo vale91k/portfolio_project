@@ -2,11 +2,14 @@
 
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Ivan's Blog");
-/*
- Пример использования модели и поиска по ИД
- use App\Models\Games\Game;
+?>
+    <div class="main_page">
+        <div class="container">
+            <div class="main_page__inner">
+                <h1 class="main_page__title">Welcome to my page</h1>
+            </div>
+        </div>
+    </div>
 
-$game = Game::fetchById(1);
-var_dump($game);
-*/
+<?php
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php");
