@@ -1,11 +1,11 @@
 <?php
 
-namespace app\Services;
+namespace App\Helpers;
 
 use Bitrix\Main\Localization;
+
 \CModule::IncludeModule("iblock");
 Localization\Loc::loadMessages(__FILE__);
-
 
 
 class BitrixHelper
