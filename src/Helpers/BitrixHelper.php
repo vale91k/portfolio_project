@@ -63,8 +63,8 @@ class BitrixHelper
             "=CODE" => $code
         ];
         $result = \CIBlockElement::GetList([], $arFilter, false, false, ['ID']);
-        $elementId = $result->Fetch();
-        return $elementId['ID'] ?? '';
+        $elementItem = $result->Fetch();
+        return $elementItem['ID'] ?? '';
     }
 
 
