@@ -62,8 +62,8 @@ class BitrixHelper
             $arFilter['=IBLOCK_SECTION_ID'] = $sectionId;
         }
         $result = \CIBlockElement::GetList([], $arFilter, false, false, ['ID']);
-        $elementItem = $result->Fetch();
-        return $elementItem['ID'] ?? '';
+        $elementIBlockItem = $result->Fetch();
+        return $elementIBlockItem['ID'] ?? '';
     }
 
 
