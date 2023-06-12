@@ -18,17 +18,13 @@ class BitrixHelper
     static function getIdIBlockByCode(string $code): string
     {
         $arrFilter = [
-            'ACTIVE' => 'Y',
-            'CODE' => $code,
-            'SITE_ID' => SITE_ID,
+            '=ACTIVE' => 'Y',
+            '=CODE' => $code,
+            '=SITE_ID' => SITE_ID,
         ];
         $result = \CIBlock::GetList(false, $arrFilter, false);
-        $iBlockId = $result->Fetch();
-        if (isset ($iBlockId["ID"])) {
-            return $iBlockId["ID"];
-        }
-        return '';
-
+        $iBlockItem = $result->Fetch();
+        return $iBlockItem['ID'] ?? '';
     }
 
     /**
@@ -41,15 +37,12 @@ class BitrixHelper
     {
         $result = \CIBlockSection::GetList([],
             [
-                'IBLOCK_ID' => $iBlockId,
-                'CODE' => $code
+                '=IBLOCK_ID' => $iBlockId,
+                '=CODE' => $code
             ]
         );
-        $sectionId = $result->Fetch();
-        if (isset ($sectionId['ID'])) {
-            return $sectionId['ID'];
-        }
-        return '';
+        $sectionItem = $result->Fetch();
+        return $sectionItem['ID'] ?? '';
     }
 
     /**
@@ -61,24 +54,17 @@ class BitrixHelper
      */
     static function getIdElementByCode(string $code, string $iBlockId, string $sectionId = null): string
     {
-        if (!is_null($sectionId)) {
-            $arFilter = [
-                "IBLOCK_ID" => $iBlockId,
-                "IBLOCK_SECTION_ID" => $sectionId,
-                "CODE" => $code
-            ];
-        } else {
-            $arFilter = [
-                "IBLOCK_ID" => $iBlockId,
-                "CODE" => $code
-            ];
-        }
-        $result = \CIBlockElement::GetList([], $arFilter, false, ["nPageSize" => 1], ['ID']);
+        $arFilter = $sectionId == null ? [
+            "=IBLOCK_ID" => $iBlockId,
+            "=CODE" => $code
+        ] : [
+            "=IBLOCK_ID" => $iBlockId,
+            "=IBLOCK_SECTION_ID" => $sectionId,
+            "=CODE" => $code
+        ];
+        $result = \CIBlockElement::GetList([], $arFilter, false, false, ['ID']);
         $elementId = $result->Fetch();
-        if (isset ($elementId['ID'])) {
-            return $elementId['ID'];
-        }
-        return '';
+        return $elementId['ID'] ?? '';
     }
 
 
