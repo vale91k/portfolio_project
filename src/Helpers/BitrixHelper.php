@@ -54,14 +54,13 @@ class BitrixHelper
      */
     static function getIdElementByCode(string $code, string $iBlockId, string $sectionId = null): string
     {
-        $arFilter = $sectionId == null ? [
+        $arFilter = [
             "=IBLOCK_ID" => $iBlockId,
-            "=CODE" => $code
-        ] : [
-            "=IBLOCK_ID" => $iBlockId,
-            "=IBLOCK_SECTION_ID" => $sectionId,
             "=CODE" => $code
         ];
+        if ($sectionId) {
+            $arFilter['=IBLOCK_SECTION_ID'] = $sectionId;
+        }
         $result = \CIBlockElement::GetList([], $arFilter, false, false, ['ID']);
         $elementItem = $result->Fetch();
         return $elementItem['ID'] ?? '';
