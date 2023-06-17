@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Games\Table;
+namespace App\Models\Games;
 
 use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\ORM\Data\DataManager;
@@ -12,19 +12,19 @@ use Bitrix\Main\SystemException;
 Loc::loadMessages(__FILE__);
 
 /**
- * Class Game
+ * Class GameStudioTable
  *
  * Fields:
  * <ul>
  * <li> ID int mandatory
  * <li> UF_NAME text optional
  * <li> UF_DESCRIPTION text optional
- * <li> UF_RELEASED_AT date optional
+ * <li> UF_FOUNDED_AT date optional
  * </ul>
  *
- * @package App\Models\Games
+ * @package Bitrix\Game
  **/
-class GameTable extends DataManager
+class GameStudioTable extends DataManager
 {
     /**
      * Returns DB table name for entity.
@@ -33,7 +33,7 @@ class GameTable extends DataManager
      */
     public static function getTableName(): string
     {
-        return 'app_games';
+        return 'app_game_studios';
     }
 
     /**
@@ -50,25 +50,25 @@ class GameTable extends DataManager
                 [
                     'primary' => true,
                     'autocomplete' => true,
-                    'title' => 'ID'
+                    'title' => Loc::getMessage('STUDIOS_ENTITY_ID_FIELD')
                 ]
             ),
             new TextField(
                 'UF_NAME',
                 [
-                    'title' => 'Название'
+                    'title' => Loc::getMessage('STUDIOS_ENTITY_UF_NAME_FIELD')
                 ]
             ),
             new TextField(
                 'UF_DESCRIPTION',
                 [
-                    'title' => 'Описание'
+                    'title' => Loc::getMessage('STUDIOS_ENTITY_UF_DESCRIPTION_FIELD')
                 ]
             ),
             new DateField(
-                'UF_RELEASED_AT',
+                'UF_FOUNDED_AT',
                 [
-                    'title' => 'Дата релиза'
+                    'title' => Loc::getMessage('STUDIOS_ENTITY_UF_FOUNDED_AT_FIELD')
                 ]
             ),
         ];
