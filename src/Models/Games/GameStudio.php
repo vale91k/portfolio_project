@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Models\GameStudios;
+namespace App\Models\Games;
+
 use App\Models\BitrixModelTrait;
-use App\Models\Games\Table\GameStudioTable;
+
 
 /**
  * Class GameStudio
@@ -11,8 +12,15 @@ use App\Models\Games\Table\GameStudioTable;
 class GameStudio extends GameStudioTable
 {
     use BitrixModelTrait;
+
+    /**
+     * Возвращает имя класса таблицы.(Связь с таблицей)
+     * @return string
+     */
     public static function tableClass(): string
     {
         return GameStudioTable::class;
     }
+
+
 }
