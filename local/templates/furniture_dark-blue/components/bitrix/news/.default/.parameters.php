@@ -1,4 +1,5 @@
-<?
+<?php
+
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 
 $arTemplateParameters = array(
@@ -21,6 +22,11 @@ $arTemplateParameters = array(
         "NAME" => GetMessage("CANONICAL"),
         "TYPE" => "STRING",
     ),
+    "SPECIALDATE" => Array(
+		"NAME" => GetMessage("SPECIALDATE"),
+		"TYPE" => "CHECKBOX",
+		"DEFAULT" => "Y",
+	),
 	"USE_SHARE" => Array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_USE_SHARE"),
 		"TYPE" => "CHECKBOX",
@@ -48,7 +54,7 @@ if ($arCurrentValues["USE_SHARE"] == "Y")
 		"COLS" => 25,
 		"REFRESH"=> "Y",
 	);
-	
+
 	if (trim($arCurrentValues["SHARE_TEMPLATE"]) == '')
 		$shareComponentTemlate = false;
 	else
@@ -71,7 +77,7 @@ if ($arCurrentValues["USE_SHARE"] == "Y")
 		"TYPE" => "STRING",
 		"DEFAULT" => "",
 	);
-	
+
 	$arTemplateParameters["SHARE_SHORTEN_URL_KEY"] = array(
 		"NAME" => GetMessage("T_IBLOCK_DESC_NEWS_SHARE_SHORTEN_URL_KEY"),
 		"TYPE" => "STRING",
@@ -79,4 +85,3 @@ if ($arCurrentValues["USE_SHARE"] == "Y")
 	);
 }
 
-?>
