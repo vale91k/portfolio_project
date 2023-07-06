@@ -2,7 +2,7 @@
 
 namespace App\EventHandlers;
 
-class TestEventHandler
+class FeedbackEventHandler
 {
     /**
      * Запись в журнал событий при отправке писем с компонента bitrix:main.feedback

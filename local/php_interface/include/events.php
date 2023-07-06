@@ -1,5 +1,5 @@
 <?php
 
-use App\EventHandlers\TestEventHandler;
+use App\EventHandlers\FeedbackEventHandler;
 
-AddEventHandler("main", "OnBeforeEventAdd", ["App\EventHandlers\TestEventHandler", "feedbackService"]);
+AddEventHandler("main", "OnBeforeEventAdd", ["App\EventHandlers\FeedbackEventHandler", "feedbackService"]);
