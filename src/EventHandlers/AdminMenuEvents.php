@@ -16,7 +16,7 @@ class AdminMenuEvents
 
         // Получение всех груп текущего пользователя
         $userGroup = \CUser::GetUserGroupList($USER->GetID());
-
+        $isManager = Null;
         // Получение id группы контент редакторов
         $contentGroupID = \CGroup::GetList(
             "c_sort",
@@ -26,16 +26,12 @@ class AdminMenuEvents
             ]
         )->fetch()["ID"];
 
+        // Получение булев типа на менеджера
         while ($group = $userGroup->fetch()) {
-
-            if ($group["GROUP_ID"] == 1) {
-                $isAdmin = true;
-            }
 
             if ($group["GROUP_ID"] == $contentGroupID) {
                 $isManager = true;
             }
-
         }
         if ($isManager == true) {
 
