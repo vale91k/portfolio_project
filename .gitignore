@@ -27,6 +27,7 @@ composer.phar
 .htpasswd
 /local/php_interface/generated_files
 /local/php_interface/constants.dat
+/.test/
 /test/
 /vue/
 
