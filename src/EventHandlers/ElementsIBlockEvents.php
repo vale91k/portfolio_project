@@ -2,12 +2,11 @@
 
 namespace App\EventHandlers;
 
-use App\Helpers\BitrixHelper;
-
 class ElementsIBlockEvents
 {
     // Количество максимальных просмотров
-    const  MAX_COUNT = 5;
+    const  VIEWS_MAX_COUNT = 5;
+
     /**
      * ex2-50
      * При деактивации элемента ИБ Продукция выдает ошибку, если у него больше 5 просмотров
@@ -16,8 +15,6 @@ class ElementsIBlockEvents
      */
     function checkOnDeactivationElement(array &$arFields): bool
     {
-        // Получение id Инфоблока Продукция
-        define('ID_IBLOCK_CATALOG', BitrixHelper::getIdIBlockByCode('furniture_products_s1'));
         global $APPLICATION;
         // Если меняем элемент каталога
         if ($arFields["IBLOCK_ID"] == ID_IBLOCK_CATALOG) {
@@ -36,7 +33,7 @@ class ElementsIBlockEvents
                 $res = \CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
                 $arItems = $res->fetch();
                 // Если просмотров больше 5 (константа)
-                if ($arItems["SHOW_COUNTER"] > self::MAX_COUNT) {
+                if ($arItems["SHOW_COUNTER"] > self::VIEWS_MAX_COUNT) {
                     global $APPLICATION;
                     $exText = GetMessage("CHECK_DEACTIVATED_ELEMENT_TEXT", ["#COUNT#" => $arItems["SHOW_COUNTER"]]);
                     $APPLICATION->throwException($exText);
