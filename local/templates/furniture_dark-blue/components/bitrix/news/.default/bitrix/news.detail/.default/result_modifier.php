@@ -16,7 +16,7 @@ if (!empty($arParams["CANONICAL"])) {
         "ACTIVE" => "Y"
     ];
     $res = CIBlockElement::GetList([], $arFilter, false, false, $arSelect);
-    while($ob = $res->fetch()) {
+    if ($ob = $res->fetch()) {
         $arResult["CANONICAL_LINK"] = $ob["NAME"];
         $this->__component->SetResultCacheKeys(["CANONICAL_LINK"]);
     }
