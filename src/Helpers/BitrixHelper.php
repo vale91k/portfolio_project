@@ -20,7 +20,6 @@ class BitrixHelper
         $arrFilter = [
             '=ACTIVE' => 'Y',
             '=CODE' => $code,
-            '=SITE_ID' => SITE_ID,
         ];
         $result = \CIBlock::GetList(false, $arrFilter, false);
         $iBlockItem = $result->Fetch();

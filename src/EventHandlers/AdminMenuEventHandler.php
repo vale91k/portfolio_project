@@ -2,15 +2,18 @@
 
 namespace App\EventHandlers;
 
-class AdminMenuEvents
+class AdminMenuEventHandler
 {
+    // Символьный код группы Контент-редакторов
+    const CODE_CONTENT_EDITOR = 'content_editor';
+
     /**
      * ex2-95
      * Упрощает меню админки для контент-менеджеров
      * @param array $aGlobalMenu
      * @param array $aModuleMenu
      */
-    function SimplificationAdminMenu(array &$aGlobalMenu, array &$aModuleMenu): void
+    function simplificationAdminMenu(array &$aGlobalMenu, array &$aModuleMenu): void
     {
         global $USER;
 
@@ -22,7 +25,7 @@ class AdminMenuEvents
             "c_sort",
             "asc",
             [
-                "STRING_ID" => "content_editor"
+                "STRING_ID" => self::CODE_CONTENT_EDITOR
             ]
         )->fetch()["ID"];
 
