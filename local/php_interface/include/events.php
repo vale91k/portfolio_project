@@ -1,9 +1,14 @@
 <?php
-use App\EventHandlers\FeedbackEventHandler;
-use App\EventHandlers\EventLogHandler;
 
+use App\EventHandlers\FeedbackEventHandler;
+use App\EventHandlers\PageNotFoundEventHandler;
+use App\EventHandlers\ElementsIBlockEvents;
+
+
+AddEventHandler("iblock", "OnBeforeIBlockElementUpdate", ["App\EventHandlers\ElementsIBlockEvents", "checkOnDeactivationElement"]);
 AddEventHandler("main", "OnBeforeEventAdd", ["App\EventHandlers\FeedbackEventHandler", "feedbackService"]);
-AddEventHandler("main", "OnEpilog", ["App\EventHandlers\EventLogHandler", "entryEventLogAtPage404"]);
+AddEventHandler("main", "OnEpilog", ["App\EventHandlers\PageNotFoundEventHandler", "entryEventLogAtPage404"]);
+
 
 
 

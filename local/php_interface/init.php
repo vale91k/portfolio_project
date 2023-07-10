@@ -13,6 +13,12 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/events
     require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/events.php';
 }
 /**
+ * Подключение файла констант
+ */
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/const.php')) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/const.php';
+}
+/**
  * Подключение вспомогательных функций
  */
 require "helpers.php";

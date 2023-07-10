@@ -2,7 +2,7 @@
 
 namespace App\EventHandlers;
 
-class EventLogHandler
+class PageNotFoundEventHandler
 {
     /**
      * ex2-93
