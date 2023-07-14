@@ -6,18 +6,19 @@ class MetaChangerEventHandler
 {
     /**
      * ex2-94
-     * Использование title и description из ИБ Метатеги (по посещению страниц Продукции)
+     * С помощью свойств элемента ИБ Метатеги (title и description) дает возможность
+     * изменять tittle и description на страницах раздела "Продукция".
      * @throws \Bitrix\Main\LoaderException
      */
-    function toolSEOSpecialist(): void
+    public function productsTittleDescriptionChanger(): void
     {
         global $APPLICATION;
         $curPage = $APPLICATION->GetCurDir();
         //Проверка на подключение модуля работы с инфоблоками
-        if (\Bitrix\Main\Loader::includeModule("iblock")) {
+        if (\Bitrix\Main\Loader::includeModule('iblock')) {
 
             $arFilter = [
-                "IBLOCK_ID" => IBLOCK_META,
+                "IBLOCK_ID" => IBLOCK_META_TAGS_ID,
                 "NAME" => $curPage
             ];
 
