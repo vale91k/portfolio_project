@@ -29,7 +29,7 @@ class MetaChangerEventHandler
                 "PROPERTY_mega_description"
             ];
 
-            $ob = \CIBlockElement::GetList(
+            $res = \CIBlockElement::GetList(
                 [],
                 $arFilter,
                 false,
@@ -37,7 +37,7 @@ class MetaChangerEventHandler
                 $arSelect
             );
 
-            if ($arRes = $ob->Fetch()) {
+            if ($arRes = $res->Fetch()) {
 
                 $APPLICATION->SetPageProperty('title', $arRes["PROPERTY_MEGA_TITLE_VALUE"]);
                 $APPLICATION->SetPageProperty('description', $arRes["PROPERTY_MEGA_DESCRIPTION_VALUE"]);
