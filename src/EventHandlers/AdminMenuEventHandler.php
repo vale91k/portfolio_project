@@ -13,7 +13,7 @@ class AdminMenuEventHandler
      * @param array $aGlobalMenu
      * @param array $aModuleMenu
      */
-    function simplificationAdminMenu(array &$aGlobalMenu, array &$aModuleMenu): void
+    public function simplificationAdminMenu(array &$aGlobalMenu, array &$aModuleMenu): void
     {
         global $USER;
 

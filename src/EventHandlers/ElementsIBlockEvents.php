@@ -13,11 +13,11 @@ class ElementsIBlockEvents
      * @param array $arFields
      * @return bool
      */
-    function checkOnDeactivationElement(array &$arFields): bool
+    public function checkOnDeactivationElement(array &$arFields): bool
     {
         global $APPLICATION;
         // Если меняем элемент каталога
-        if ($arFields["IBLOCK_ID"] == ID_IBLOCK_CATALOG) {
+        if ($arFields["IBLOCK_ID"] == IBLOCK_CATALOG_ID) {
             // Если элемент деактивирован
             if ($arFields["ACTIVE"] == "N") {
                 $arSelect = [
@@ -27,7 +27,7 @@ class ElementsIBlockEvents
                     "SHOW_COUNTER"
                 ];
                 $arFilter = [
-                    "IBLOCK_ID" => ID_IBLOCK_CATALOG,
+                    "IBLOCK_ID" => IBLOCK_CATALOG_ID,
                     "ID" => $arFields["ID"],
                 ];
                 $res = \CIBlockElement::GetList([], $arFilter, false, false, $arSelect);

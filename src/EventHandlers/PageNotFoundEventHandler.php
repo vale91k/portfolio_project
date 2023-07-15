@@ -8,7 +8,7 @@ class PageNotFoundEventHandler
      * ex2-93
      * Запись в журнал событий при посещении несуществующих страниц (как статических, так и динамических)
      */
-    function entryEventLogAtPage404()
+    public function entryEventLogAtPage404()
     {
         // При получении ошибки 404
         if (defined("ERROR_404") && ERROR_404 == "Y") {
