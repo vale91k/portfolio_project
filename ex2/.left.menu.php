@@ -1,12 +1,12 @@
 <?php
 
-$aMenuLinks = Array(
-	Array(
+$aMenuLinks = [
+	[
 		"Простой компонент", 
 		"/ex2/simplecomp/", 
-		Array(), 
-		Array(), 
+		[],
+		[],
 		"" 
-	)
-);
+	]
+];
 ?>
