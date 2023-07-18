@@ -1,4 +1,5 @@
-<?
+<?php
+
 $aMenuLinks = Array(
 	Array(
 		"Простой компонент", 
