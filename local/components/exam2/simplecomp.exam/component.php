@@ -10,15 +10,16 @@ if (!Loader::includeModule("iblock")) {
 }
 
 // Установка параметров, если они не заданы
-if (!isset($arParams["CACHE_TIME"]))
+if ($arParams["CACHE_TIME"]) {
     $arParams["CACHE_TIME"] = 36000000;
+}
 
-if (!isset($arParams["PRODUCTS_IBLOCK_ID"]))
+if ($arParams["PRODUCTS_IBLOCK_ID"]) {
     $arParams["PRODUCTS_IBLOCK_ID"] = 2;
-
-if (!isset($arParams["NEWS_IBLOCK_ID"]))
+}
+if ($arParams["NEWS_IBLOCK_ID"]) {
     $arParams["NEWS_IBLOCK_ID"] = 1;
-
+}
 // Кеширование (Проверка, если есть кеш вернется верстка)
 if ($this->startResultCache()) {
 
@@ -103,10 +104,7 @@ if ($this->startResultCache()) {
     }
 
     // Распределение разделов по новостям
-
-
     foreach ($arSections as $arSection) {
-
         foreach ($arSection[$arParams["PRODUCTS_IBLOCK_ID_PROPERTY"]] as $newId) {
             $arNews[$newId]['SECTIONS'][] = $arSection["NAME"];
         }
@@ -114,11 +112,8 @@ if ($this->startResultCache()) {
     $arResult["NEWS"] = $arNews;
     $this->SetResultCacheKeys(["PRODUCT_CNT"]);
     $this->includeComponentTemplate();
-
 } else {
-
     $this->abortResultCache();
-
 }
 $APPLICATION->SetTitle(GetMessage("SIMPLECOMP_EXAM2_COUNT_TITLE", ["#COUNT#" => $arResult["PRODUCT_CNT"]]));
 
