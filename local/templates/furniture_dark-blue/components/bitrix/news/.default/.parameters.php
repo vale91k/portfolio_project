@@ -22,6 +22,10 @@ $arTemplateParameters = array(
         "NAME" => GetMessage("CANONICAL"),
         "TYPE" => "STRING",
     ),
+    "REPORT_AJAX" => Array(
+        "NAME" => GetMessage("REPORT_AJAX"),
+        "TYPE" => "CHECKBOX",
+    ),
     "SPECIALDATE" => Array(
 		"NAME" => GetMessage("SPECIALDATE"),
 		"TYPE" => "CHECKBOX",
