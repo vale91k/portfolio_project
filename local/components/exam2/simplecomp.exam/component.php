@@ -20,7 +20,6 @@ if ($arParams["PRODUCTS_IBLOCK_ID"]) {
 if ($arParams["NEWS_IBLOCK_ID"]) {
     $arParams["NEWS_IBLOCK_ID"] = 1;
 }
-
 // Кеширование (Проверка, если есть кеш вернется верстка)
 if ($this->startResultCache()) {
 
