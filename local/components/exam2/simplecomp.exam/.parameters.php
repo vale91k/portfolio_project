@@ -17,6 +17,12 @@ $arComponentParameters = [
             "PARENT" => "BASE",
             "TYPE" => "STRING",
         ],
+        "TEMPLATE_DETAIL_PAGE_URL" => [
+            "NAME" => GetMessage("SIMPLECOMP_EXAM2_TEMPLATE_DETAIL_PAGE_URL"),
+            "PARENT" => "BASE",
+            "TYPE" => "STRING",
+            "DEFAULT" => "catalog_exam/#SECTION_ID#/#ELEMENT_CODE#"
+        ],
         "CACHE_TIME" => ["DEFAULT" => 36000000],
     ],
 ];

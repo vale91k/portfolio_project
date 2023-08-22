@@ -20,6 +20,7 @@ if ($arParams["PRODUCTS_IBLOCK_ID"]) {
 if ($arParams["NEWS_IBLOCK_ID"]) {
     $arParams["NEWS_IBLOCK_ID"] = 1;
 }
+
 // Кеширование (Проверка, если есть кеш вернется верстка)
 if ($this->startResultCache()) {
 
@@ -77,7 +78,10 @@ if ($this->startResultCache()) {
 
     // Получим список активных товаров из разделов
     $obProducts = CIBlockElement::GetList(
-        [],
+        [
+            "NAME" => "asc",
+            "SORT" => "asc"
+        ],
         [
             "IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
             "ACTIVE" => "Y",
@@ -89,6 +93,7 @@ if ($this->startResultCache()) {
             "NAME",
             "IBLOCK_SECTION_ID",
             "ID",
+            "CODE",
             "IBLOCK_ID",
             "PROPERTY_ARTNUMBER",
             "PROPERTY_MATERIAL",
@@ -97,12 +102,24 @@ if ($this->startResultCache()) {
     );
     $arResult["PRODUCT_CNT"] = 0;
     while ($arProduct = $obProducts->Fetch()) {
+        // Получаем ссылку на детальный просмотр
+        $arProduct["DETAIL_PAGE_URL"] = str_replace(
+            [
+                "#SECTION_ID#",
+                "#ELEMENT_CODE#",
+            ],
+            [
+                $arProduct["IBLOCK_SECTION_ID"],
+                $arProduct["CODE"],
+            ],
+            $arParams["TEMPLATE_DETAIL_PAGE_URL"]
+        );
+
         $arResult["PRODUCT_CNT"]++;
         foreach ($arSections[$arProduct["IBLOCK_SECTION_ID"]][$arParams["PRODUCTS_IBLOCK_ID_PROPERTY"]] as $newsId) {
             $arNews[$newsId]["PRODUCTS"][] = $arProduct;
         }
     }
-
     // Распределение разделов по новостям
     foreach ($arSections as $arSection) {
         foreach ($arSection[$arParams["PRODUCTS_IBLOCK_ID_PROPERTY"]] as $newId) {
