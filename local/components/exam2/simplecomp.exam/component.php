@@ -20,8 +20,12 @@ if ($arParams["PRODUCTS_IBLOCK_ID"]) {
 if ($arParams["NEWS_IBLOCK_ID"]) {
     $arParams["NEWS_IBLOCK_ID"] = 1;
 }
+$cFilter = false;
+if (isset($_REQUEST["F"])) {
+    $cFilter = true;
+}
 // Кеширование (Проверка, если есть кеш вернется верстка)
-if ($this->startResultCache()) {
+if ($this->startResultCache(false, [$cFilter])) {
 
     $arNews = [];
     $arNewsID = [];
@@ -74,15 +78,24 @@ if ($this->startResultCache()) {
         $arSections[$arSectionCatalog["ID"]] = $arSectionCatalog;
     }
 
+    $arFilterElements = [
+        "IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
+        "ACTIVE" => "Y",
+        "SECTION_ID" => $arSectionsID
+    ];
+    if ($cFilter) {
+        $arFilterElements[] = [
+            ["<=PROPERTY_PRICE" => 1700, "PROPERTY_MATERIAL" => "Дерево, ткань"],
+            ["<=PROPERTY_PRICE" => 1500, "PROPERTY_MATERIAL" => "Металл, пластик"],
+            "LOGIC" => "OR"
+        ];
+        $this->AbortResultCache();
+    }
 
     // Получим список активных товаров из разделов
     $obProducts = CIBlockElement::GetList(
         [],
-        [
-            "IBLOCK_ID" => $arParams["PRODUCTS_IBLOCK_ID"],
-            "ACTIVE" => "Y",
-            "SECTION_ID" => $arSectionsID
-        ],
+        $arFilterElements,
         false,
         false,
         [
