@@ -97,6 +97,20 @@ if ($this->startResultCache()) {
     );
     $arResult["PRODUCT_CNT"] = 0;
     while ($arProduct = $obProducts->Fetch()) {
+        // Эрмитаж
+        $arButtons = CIBlock::GetPanelButtons(
+            $arParams["PRODUCTS_IBLOCK_ID"],
+            $arProduct["ID"],
+            false,
+            ["SECTION_BUTTON" => false, "SESSID" => false]
+        );
+
+        $arProduct["EDIT_LINK"] = $arButtons["edit"]["edit_element"]["ACTION_URL"];
+        $arProduct["DELETE_LINK"] = $arButtons["edit"]["delete_element"]["ACTION_URL"];
+
+        $arResult["ADD_LINK"] = $arButtons["edit"]["add_element"]["ACTION_URL"];
+        $arResult["IBLOCK_ID"] = $arParams["PRODUCTS_IBLOCK_ID"];
+
         $arResult["PRODUCT_CNT"]++;
         foreach ($arSections[$arProduct["IBLOCK_SECTION_ID"]][$arParams["PRODUCTS_IBLOCK_ID_PROPERTY"]] as $newsId) {
             $arNews[$newsId]["PRODUCTS"][] = $arProduct;
