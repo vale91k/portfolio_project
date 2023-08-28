@@ -16,7 +16,7 @@ if (count($arResult["NEWS"]) > 0) { ?>
                 (<?= implode(", ", $arNews["SECTIONS"]); ?>)
             </li>
             <?php if (count($arNews["PRODUCTS"]) > 0) { ?>
-                <ul id="<?= $this->GetEditAreaId("add_element"); ?>">
+                <ul>
                     <?php foreach ($arNews["PRODUCTS"] as $arProduct) { ?>
                         <?php
                         $this->AddEditAction($arNews["ID"] . "_" . $arProduct['ID'], $arResult['ADD_LINK'], CIBlock::GetArrayByID($arResult["IBLOCK_ID"], "ELEMENT_ADD"));
