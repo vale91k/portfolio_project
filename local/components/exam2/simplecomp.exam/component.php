@@ -20,6 +20,23 @@ if ($arParams["PRODUCTS_IBLOCK_ID"]) {
 if ($arParams["NEWS_IBLOCK_ID"]) {
     $arParams["NEWS_IBLOCK_ID"] = 1;
 }
+// Кнопка в выпадающем окне
+global $USER;
+if ($USER->IsAuthorized()){
+    $arButtons = CIBlock::GetPanelButtons($arParams["PRODUCTS_IBLOCK_ID"]);
+    //Добавление в массив кнопок (новой кнопки)
+    $this->AddIncludeAreaIcons(
+      [
+          [
+              "ID" => "linklb",
+              "TITLE" => GetMessage("SIMPLECOMP_EX2_100_IBLOCK_IN_ADMIN"),
+              "URL" => $arButtons["submenu"]["element_list"]["ACTION_URL"],
+              "IN_PARAMS_MENU" => true, // Важный параметр, без нее не будет отображаться
+          ]
+      ]
+    );
+}
+
 // Кеширование (Проверка, если есть кеш вернется верстка)
 if ($this->startResultCache()) {
 
