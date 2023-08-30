@@ -20,8 +20,11 @@ if ($arParams["PRODUCTS_IBLOCK_ID"]) {
 if ($arParams["NEWS_IBLOCK_ID"]) {
     $arParams["NEWS_IBLOCK_ID"] = 1;
 }
+
+$arNavigation = CDBResult::GetNavParams($arNavParams);
+
 // Кеширование (Проверка, если есть кеш вернется верстка)
-if ($this->startResultCache()) {
+if ($this->startResultCache(false, $arNavigation)) {
 
     $arNews = [];
     $arNewsID = [];
@@ -34,14 +37,17 @@ if ($this->startResultCache()) {
             "ACTIVE" => "Y"
         ],
         false,
-        false,
+        [
+            "nPageSize" => $arParams["ELEMENT_PER_PAGE"],
+            "bShowAll" => true
+        ],
         [
             "NAME",
             "ACTIVE_FROM",
             "ID"
         ]
     );
-
+    $arResult["NAV_STRING"] = $obNews->GetPageNavString(GetMessage("SIMPLECOMP_EXAM2_PAGE_TITLE"));
     while ($newsElements = $obNews->Fetch()) {
         $arNewsID[] = $newsElements["ID"];
         $arNews[$newsElements["ID"]] = $newsElements;
@@ -99,23 +105,27 @@ if ($this->startResultCache()) {
     while ($arProduct = $obProducts->Fetch()) {
         $arResult["PRODUCT_CNT"]++;
         foreach ($arSections[$arProduct["IBLOCK_SECTION_ID"]][$arParams["PRODUCTS_IBLOCK_ID_PROPERTY"]] as $newsId) {
-            $arNews[$newsId]["PRODUCTS"][] = $arProduct;
+            if (isset($arNews[$newsId])) {
+                $arNews[$newsId]["PRODUCTS"][] = $arProduct;
+            }
         }
     }
 
     // Распределение разделов по новостям
     foreach ($arSections as $arSection) {
         foreach ($arSection[$arParams["PRODUCTS_IBLOCK_ID_PROPERTY"]] as $newId) {
-            $arNews[$newId]['SECTIONS'][] = $arSection["NAME"];
+            if (isset($arNews[$newId])) {
+                $arNews[$newId]['SECTIONS'][] = $arSection["NAME"];
+            }
         }
     }
     $arResult["NEWS"] = $arNews;
-    $this->SetResultCacheKeys(["PRODUCT_CNT"]);
+    $this->SetResultCacheKeys(array("PRODUCT_CNT"));
     $this->includeComponentTemplate();
 } else {
     $this->abortResultCache();
 }
-$APPLICATION->SetTitle(GetMessage("SIMPLECOMP_EXAM2_COUNT_TITLE", ["#COUNT#" => $arResult["PRODUCT_CNT"]]));
+$APPLICATION->SetTitle(GetMessage("SIMPLECOMP_EXAM2_TITLE") .$arResult["PRODUCT_CNT"]);
 
 
 ?>
