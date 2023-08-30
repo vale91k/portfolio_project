@@ -29,4 +29,12 @@ if (count($arResult["NEWS"]) > 0) { ?>
             <?php } ?>
         <?php } ?>
     </ul>
+    </br>
+    ---
+    <p>
+        <b>
+            <?= GetMessage("SIMPLECOMP_EXAM2_NAVIGATION"); ?>
+        </b>
+    </p>
+    <?php echo $arResult["NAV_STRING"];?>
 <?php } ?>
