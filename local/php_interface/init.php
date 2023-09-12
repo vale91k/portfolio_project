@@ -19,6 +19,12 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/const.
     require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/const.php';
 }
 /**
+ * Подключение файла агентов
+ */
+if (file_exists($_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/agents.php')) {
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/local/php_interface/include/agents.php';
+}
+/**
  * Подключение вспомогательных функций
  */
 require "helpers.php";
